@@ -8,7 +8,7 @@ public class Main {
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-
+        System.out.println("Čau Baiba!");
 //        String str = new String();
 //        //add more students with array
 //        str = JOptionPane.showInputDialog(null, "Please type the number of students to enroll",
