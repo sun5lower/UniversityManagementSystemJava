@@ -1,16 +1,19 @@
 import controller.University;
 import entity.Courses;
 import entity.Student;
+import entity.StudentController;
 import types.UserType;
-
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Menu {
 
     Scanner scanner = new Scanner(System.in);
     University university = new University();
-    private Object StudentEmail;
+    StudentController studentController = new StudentController();
+    Student student = new Student();
+
 
     public void showHomeScreen(){
         String choice = "";
@@ -28,9 +31,9 @@ public class Menu {
             case "1":
                 studentEnrollment();
                 break;
-            case "2":
+           /* case "2":
                 showAllStudents();
-                break;
+                break;*/
             case "3":
                 showOneStudent();
             case "4":
@@ -56,13 +59,21 @@ public class Menu {
     private void viewAllCourses() {
     }
 
-    private void showAllStudents() {
-        for (Student currentStudent: university.getStudents()){
+   /* private void showAllStudents() {
+        ArrayList<Student> students = ArrayList<Student>studentController.findStudent(scanner.nextLine());
+        System.out.println(students.size() + " Student found");
+        for (Student currentStudent: students){
+            System.out.println(currentStudent.getName() + " - " + currentStudent.getSurname());
+        }
+        System.out.println("All students");
+        students = studentController.getAll();
+
+                for (Student currentStudent: students){
             System.out.println(Student.getName() +
                     " | " + currentStudent.getSurname() +
-                    " | " + currentStudent.getGradeYear()); ;
-        }
-    }
+                    " | " + currentStudent.getGradeYear()); ;*/
+
+
 //needs adjusting to courses info-variables
     private void showAllCourses() {
         for (Student currentCourses : university.getCourses()) {
@@ -86,16 +97,15 @@ public class Menu {
     }
 
     private void studentEnrollment() {
+
         System.out.println("Type your name please:");
         String name = scanner.nextLine();
         System.out.println("Type your surname:");
         String surname = scanner.nextLine();
+        System.out.println("Type your gradeYear:");
+        String gradeYear = scanner.nextLine();
 
-        System.out.println("Enter User Type (admin / student):");
-        UserType userType = (scanner.nextLine().trim().toUpperCase().equals("ADMIN")) ? UserType.ADMIN : UserType.STUDENT;
-        LocalDate createdAt = LocalDate.now();
-
-        Student student = new Student(name,surname, userType, createdAt);
+        Student student = new Student(name,surname,gradeYear);
         System.out.println(student.createStudent(student));
     }
 }

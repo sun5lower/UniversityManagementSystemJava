@@ -7,6 +7,7 @@ import java.util.Scanner;
 
 public class Student {
     private static String name;
+
     private  String surname;
     private  int gradeYear;
     /*constructor will ask for name ,year
@@ -14,7 +15,7 @@ public class Student {
     enroll in classes
     view balance
     pay for classes
-    show status
+
      */
 
     private  String courses = "";
@@ -25,6 +26,11 @@ public class Student {
     public Student(String name, String surname, UserType userType, LocalDate createdAt) {
     }
 
+    public Student(int id, String name, String surName, int gradeYear, String created_at, String last_updated) {
+    }
+
+    public Student(String name, String surname, String gradeYear) {
+    }
 
 
     public static <One> One getOneStudent(int studentID) {
@@ -147,4 +153,6 @@ public class Student {
 
         return false;
     }
+
+  
 }
