@@ -1,4 +1,4 @@
-package students;
+package entity;
 
 public class StudentController {
 }
