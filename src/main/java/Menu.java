@@ -1,57 +1,113 @@
 import controller.University;
 import entity.Courses;
 import entity.Student;
-import entity.StudentController;
-import types.UserType;
-import java.time.LocalDate;
-import java.util.ArrayList;
+import controller.StudentController;
+
 import java.util.Scanner;
 
 public class Menu {
-
     Scanner scanner = new Scanner(System.in);
     University university = new University();
     StudentController studentController = new StudentController();
-    Student student = new Student();
 
 
-    public void showHomeScreen(){
+    public void showHomeScreen() {
         String choice = "";
-        System.out.println("Welcome to the University"
-                + "\n1. Add Student \t\t 4. Add Courses"
-                + "\n2. View All Students \t\t 5. View All Courses"
-                + "\n3. View Individual Student \t\t 6. View Exam Results"
-                + "\n7. Exit University"
-        );
+        do {
+            System.out.println("Welcome to the University\n"
+                    + "\n1. Add Student \t\t\t\t\t\t\t\t5. Add Courses"
+                    + "\n2. Enroll student in to the course\t\t\t6. View All Courses"
+                    + "\n3. View Individual Student \t\t\t\t\t7. View Exam Results"
+                    + "\n4. View All Students \t\t \t\t\t\t8. View All Courses\n"
+                    + "\n9. Exit University"
+            );
 
-        System.out.print("Choose one of the below options please: ");
-        choice = scanner.nextLine();
+            System.out.print("\nChoose one of the below options please: ");
+            choice = scanner.nextLine();
 
-        switch (choice){
-            case "1":
-                studentEnrollment();
-                break;
-           /* case "2":
-                showAllStudents();
-                break;*/
-            case "3":
-                showOneStudent();
-            case "4":
-                showAllCourses();
-                break;
-            case "5":
-                viewAllCourses();
-                break;
-            case "6":
-                viewExamResults();
-                break;
-            case "7":
-                return;
-            default:
-                break;
-        }
-        this.showHomeScreen();
+            switch (choice) {
+                case "1":
+                    collectStudentInfoAndAddStudent();
+                    break;
+                case "2":
+                    studentEnrollment();
+                    break;
+                case "3":
+                    showSingleStudentsInfo();
+                    break;
+                case "4":
+                    showAllStudentsInfo();
+                case "5":
+                    showAllCourses();
+                    break;
+                case "6":
+                    viewAllCourses();
+                    break;
+                case "7":
+                    viewExamResults();
+                    break;
+                case "9":
+                    System.out.println("Have a great day!");
+                    return;
+                default:
+                    break;
+            }
+            System.out.print("\n Enter C to continue\n");
+            scanner.nextLine();
+        } while (!choice.equals("9"));
+        return;
     }
+
+
+    private void collectStudentInfoAndAddStudent() {
+        Student student = new Student();
+        Scanner scanner = new Scanner(System.in);
+        StudentController studentController = new StudentController();
+
+        Student newStudent = new Student();
+        System.out.println("Add a new Student");
+
+        System.out.println("Enter name:");
+        newStudent.name = scanner.nextLine();
+
+        System.out.println("Enter surname:");
+        newStudent.surname = scanner.nextLine();
+
+        System.out.println("Enter gradeYear:");
+        newStudent.gradeYear = Integer.parseInt(scanner.nextLine());
+
+        System.out.println(studentController.collectStudentInfoAndAddStudent(newStudent));
+
+    }
+
+    private void studentEnrollment() {
+        System.out.println("Type your name please:");
+        String name = scanner.nextLine();
+        System.out.println("Type your surname:");
+        String surname = scanner.nextLine();
+        System.out.println("Type your gradeYear:");
+        String gradeYear = scanner.nextLine();
+
+    }
+
+    private void showSingleStudentsInfo() {
+
+    }
+
+    private void showAllStudentsInfo() {
+
+
+    }
+
+
+    private void showAllCourses() {
+        for (Student currentCourses : university.getCourses()) {
+            System.out.println(Courses.getName() +
+                    " | " + currentCourses.getSurname() +
+                    " | " + currentCourses.getGradeYear());
+        }
+    }
+
 
     private void viewExamResults() {
     }
@@ -74,38 +130,7 @@ public class Menu {
                     " | " + currentStudent.getGradeYear()); ;*/
 
 
-//needs adjusting to courses info-variables
-    private void showAllCourses() {
-        for (Student currentCourses : university.getCourses()) {
-            System.out.println(Courses.getName() +
-                    " | " + currentCourses.getSurname() +
-                    " | " + currentCourses.getGradeYear());
-        }
-    }
+    //needs adjusting to courses info-variables
 
-    private void showOneStudent() {
-        System.out.println("View Student\n");
-        System.out.println("Enter Student's name:");
 
-        int studentID = scanner.nextInt();
-        One one = Student.getOneStudent(studentID);
-
-        System.out.println("Student Name:" + one.name);
-
-        System.out.println("Student Surname:" + one.surname);
-
-    }
-
-    private void studentEnrollment() {
-
-        System.out.println("Type your name please:");
-        String name = scanner.nextLine();
-        System.out.println("Type your surname:");
-        String surname = scanner.nextLine();
-        System.out.println("Type your gradeYear:");
-        String gradeYear = scanner.nextLine();
-
-        Student student = new Student(name,surname,gradeYear);
-        System.out.println(student.createStudent(student));
-    }
 }

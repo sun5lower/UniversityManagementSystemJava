@@ -5,9 +5,9 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class DBHandler {
-    String connectionUrl = "jdbc:mysql://localhost:3306/shop?serverTimeZone=UTC ";
-    String user = "";
-    String password = "";
+    String connectionUrl = "jdbc:mysql://127.0.0.1:3306/university?serverTimeZone=UTC";
+    String user = "root";
+    String password = "root";
 
     private Connection connection;
 
@@ -15,7 +15,7 @@ public class DBHandler {
         try {
             connection  = DriverManager.getConnection(connectionUrl,user,password);
         } catch (SQLException e) {
-            System.out.println("Shop is unable to connect to data storage system");
+            System.out.println("University is unable to connect to data storage system");
             e.printStackTrace();
         }
     }

@@ -2,14 +2,12 @@ package Repository;
 
 import database.DBHandler;
 import entity.Student;
-
 import java.sql.*;
 import java.util.ArrayList;
-
 public class StudentRepository {
     private DBHandler dbHandler = new DBHandler();
 
-    public void createStudent(Student student) throws SQLException {
+    public void collectStudentInfoAndAddStudent(Student student) throws SQLException {
         Connection connection = dbHandler.getConnection();
         String query = "INSERT INTO student(name, surName, gradeYear) VALUES(?,?,?)";
         PreparedStatement preparedStatement = connection.prepareStatement(query);

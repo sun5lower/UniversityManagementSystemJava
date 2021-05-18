@@ -1,29 +1,118 @@
 package entity;
-
-import types.UserType;
-
 import java.time.LocalDate;
 import java.util.Scanner;
 
 public class Student {
-    private static String name;
 
-    private  String surname;
-    private  int gradeYear;
+
+    public String name;
+    public String surname;
+    public int gradeYear;
+    public String last_updated;
+    public String created_at;
+
+    public Student(int id, String name, String surName, int gradeYear, String created_at, String last_updated) {
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getSurname() {
+        return surname;
+    }
+
+    public void setSurname(String surname) {
+        this.surname = surname;
+    }
+
+    public int getGradeYear() {
+        return gradeYear;
+    }
+
+    public void setGradeYear(int gradeYear) {
+        this.gradeYear = gradeYear;
+    }
+
+    public String getLast_updated() {
+        return last_updated;
+    }
+
+    public void setLast_updated(String last_updated) {
+        this.last_updated = last_updated;
+    }
+
+    public String getCreated_at() {
+        return created_at;
+    }
+
+    public void setCreated_at(String created_at) {
+        this.created_at = created_at;
+    }
+
+
+    public Student(String name, String surname, int gradeYear, String last_updated, String created_at) {
+        this.name = name;
+        this.surname = surname;
+        this.gradeYear = gradeYear;
+        this.last_updated = last_updated;
+        this.created_at = created_at;
+    }
+
+    public Student() {
+    }
+
+}
+    /*
+
+    public Student() {
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getSurname() {
+        return surname;
+    }
+
+    public void setSurname(String surname) {
+        this.surname = surname;
+    }
+
+    public int getGradeYear() {
+        return gradeYear;
+    }
+
+    public void setGradeYear(int gradeYear) {
+        this.gradeYear = gradeYear;
+    }
+
+    /*
+
+
     /*constructor will ask for name ,year
     generate ID
     enroll in classes
     view balance
     pay for classes
 
-     */
 
-    private  String courses = "";
+
+    private String courses = "";
     //static means value is not specific to object,but to class
-    private  int costOfCoursesBalance = 0;
-    private static  int  tuitionFees = 400;
+    private int costOfCoursesBalance = 0;
+    private static int tuitionFees = 400;
 
-    public Student(String name, String surname, UserType userType, LocalDate createdAt) {
+    public Student(String name, String surname, LocalDate createdAt) {
     }
 
     public Student(int id, String name, String surName, int gradeYear, String created_at, String last_updated) {
@@ -61,7 +150,7 @@ public class Student {
         this.tuitionFees = tuitionFees;
     }
 
-    public static String getName() {
+    public String getName() {
         return name;
     }
 
@@ -84,14 +173,15 @@ public class Student {
         this.gradeYear = gradeYear;
     }
 
-    public Student(String surname, int gradeYear, String courses, int costOfCoursesBalance) {
+    public Student(String name, String surname, int gradeYear, String courses, int costOfCoursesBalance) {
+        this.name = name;
         this.surname = surname;
         this.gradeYear = gradeYear;
         this.courses = courses;
         this.costOfCoursesBalance = costOfCoursesBalance;
     }
 
-    public Student(){
+    public Student() {
 
         System.out.println("Hello, welcome to new year at school!");
         Scanner scanner = new Scanner(System.in);
@@ -111,28 +201,29 @@ public class Student {
     }
 
     //join the classes
-    public void enroll(){
+    public void enroll() {
         //make a loop
         do {
             System.out.print("Enter class you want to join( x to quit): ");
             Scanner scanner = new Scanner(System.in);
             String course = scanner.nextLine();
             if (!course.equals("x")) {
-                course = course + "\n " +course;
+                course = course + "\n " + course;
                 costOfCoursesBalance = costOfCoursesBalance + tuitionFees;
-            }
-            else {
+            } else {
                 break;
             }
-        }while (1 != 0);
+        } while (1 != 0);
 
     }
+
     //view balance
-    public void viewBalance(){
+    public void viewBalance() {
         System.out.println("Your balance is £" + costOfCoursesBalance);
     }
+
     //study fees
-    public void payForStudies(){
+    public void payForStudies() {
         viewBalance();
         System.out.println("How much would you like to pay? ");
         Scanner scanner = new Scanner(System.in);
@@ -141,8 +232,9 @@ public class Student {
         System.out.println("Thank you for your payment of £" + payment);
         viewBalance();
     }
+
     //view status
-    public String toString(){
+    public String toString() {
         return "Name: " + name + " " + surname +
                 "\nGrade Level: " + gradeYear +
                 "\nClasses enrolled: " + courses +
@@ -154,5 +246,5 @@ public class Student {
         return false;
     }
 
-  
-}
+    public String setName() {
+        return name;*/

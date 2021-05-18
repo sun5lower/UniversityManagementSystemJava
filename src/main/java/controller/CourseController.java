@@ -1,4 +1,4 @@
-package entity;
+package controller;
 
 public class CourseController {
 }
