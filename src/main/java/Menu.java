@@ -41,7 +41,7 @@ public class Menu {
                     viewAllCourses();
                     break;
                 case "7":
-                    viewExamResults();
+                    addCourse();
                     break;
                 case "9":
                     System.out.println("Have a great day!");
@@ -116,7 +116,26 @@ public class Menu {
     }
 
 
-    private void viewExamResults() {
+    private void addCourse() {
+        Student student = new Student();
+        Scanner scanner = new Scanner(System.in);
+        StudentController studentController = new StudentController();
+
+        Student newStudent = new Student();
+        System.out.println("Add a new Student");
+
+        System.out.println("Enter name:");
+        newStudent.name = scanner.nextLine();
+
+        System.out.println("Enter surname:");
+        newStudent.surname = scanner.nextLine();
+
+        System.out.println("Enter gradeYear:");
+        newStudent.gradeYear = Integer.parseInt(scanner.nextLine());
+
+        System.out.println(studentController.collectStudentInfoAndAddStudent(newStudent));
+
+    }
     }
 
     private void viewAllCourses() {
