@@ -1,76 +1,76 @@
 package repository;
 import database.DBHandler;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.Scanner;
-import entity.*
-
+import entity.Course;
 
 public class CourseRepository {
     private DBHandler dbHandler = new DBHandler();
-    public void addCourse(courses.Course student) throws SQLException {
+    public void addCourse(Course course) throws SQLException {
         Connection connection = dbHandler.getConnection();
         String query = "INSERT INTO course(name, surName, gradeYear) VALUES(?,?,?)";
         PreparedStatement preparedStatement = connection.prepareStatement(query);
-        preparedStatement.setString(1, course.getName());
-        preparedStatement.setString(2, course.getSurname());
-        preparedStatement.setInt(3, course.getGradeYear());
-        preparedStatement.execute();
+        preparedStatement.setString(1, course.name);
+        preparedStatement.setTime(2, course.start_at);
+        preparedStatement.setTime(3, course.end_at);
+        preparedStatement.setInt(3, course.number_attending);
 
+               preparedStatement.execute();
         preparedStatement.close();
     }
-}
-    public ArrayList<Student> getAll() throws SQLException {
+
+    public ArrayList<Course> getAll() throws SQLException {
         Statement statement = dbHandler.getConnection().createStatement();
-        String query = "SELECT * FROM student";
+        String query = "SELECT * FROM course";
         ResultSet results = statement.executeQuery(query);
 
-        ArrayList<Student> students = new ArrayList<Student>();
+        ArrayList<Course> courses = new ArrayList<Course>();
 
         while (results.next()) {
             int id = results.getInt("id");
             String name = results.getString("name");
-            String surName = results.getString("surname");
-            int gradeYear = results.getInt("gradeYear");
-            String courseEnrolled = results.getString ("courseEnrolled");
+            Time start_at = results.getTime("start_at");
+            Time end_at = results.getTime("end_at");
+            int number_attending = results.getInt("number_attending");
             String created_at = results.getString("created_at");
             String last_updated = results.getString("last_updated");
 
-            students.add(new Student(id, name, surName, gradeYear,courseEnrolled, created_at, last_updated));
+
+
+
+           courses.add(new Course(id, name, start_at, end_at,number_attending, created_at, last_updated));
         }
 
         statement.close();
 
-        return students;
+        return courses;
     }
 
 
 
-    public Student findStudentByID(Integer id) throws SQLException {
-        Student student;
+    public Course findCourseByID(Integer id) throws SQLException {
+        Course course;
 
         Statement statement = dbHandler.getConnection().createStatement();
-        String query = "SELECT * FROM student WHERE id =" + id + " LIMIT 1";
+        String query = "SELECT * FROM course WHERE id =" + id + " LIMIT 1";
 
         ResultSet results = statement.executeQuery(query);
 
         results.next();
-        student = new Student(
+        course = new Course(
                 results.getInt("id"),
                 results.getString("name"),
-                results.getString("surName"),
-                results.getInt("gradeYear"),
-                results.getString("courseEnrolled"),
-                results.getString("created_at"),
+                results.getTime("start_at"),
+        results.getTime("end_at"),
+        results.getInt("number_attending"),
+               results.getString("created_at"),
                 results.getString("last_updated")
-        );
+
+                );
 
         statement.close();
 
-        return student;
+        return course;
     }
 }

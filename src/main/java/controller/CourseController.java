@@ -13,35 +13,35 @@ public class CourseController {
             courseRepository.addCourse(course);
         } catch (SQLException e) {
             e.printStackTrace();
-            return "error with adding student";
+            return "error with adding course";
         }
         return "Course added successfully";
     }
 
-    public ArrayList<Student> getAll() {
-        ArrayList<Student> students = new ArrayList<Student>();
+    public ArrayList<Course> getAll() {
+        ArrayList<Course> courses = new ArrayList<Course>();
         try {
-            students = studentRepository.getAll();
+            courses = courseRepository.getAll();
         }catch (SQLException e){
             System.out.println(e);
         }
 
-        return students;
+        return courses;
     }
 
 
 
-    public Student findStudentByID(Integer id){
-        Student student  = null;
+    public Course findCourseByID(Integer id){
+        Course course  = null;
 
         try {
-            student = studentRepository.findStudentByID(id);
+            course = courseRepository.findCourseByID(id);
         }catch (SQLException e){
             System.out.println(e);
         }
 
-        return student;
+        return course;
     }
 
-}
+
 }

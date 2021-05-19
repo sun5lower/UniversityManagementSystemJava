@@ -1,4 +1,4 @@
-package courses;
+package entity;
 
 import java.sql.Time;
 

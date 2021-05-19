@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 public class Menu {
     Scanner scanner = new Scanner(System.in);
-    University university = new University();
+
     StudentController studentController = new StudentController();
 
 
