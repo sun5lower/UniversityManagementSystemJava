@@ -20,7 +20,7 @@ StudentRepository studentRepository = new StudentRepository();
         return "Student added successfully";
     }
 
-    public ArrayList<Student> getAll() {
+    public ArrayList<Student> getAllStudents() {
         ArrayList<Student> students = new ArrayList<Student>();
 
         try {
@@ -30,6 +30,9 @@ StudentRepository studentRepository = new StudentRepository();
         }
 
         return students;
+    }
+    public Student findStudent(String name){
+        return new Student();
     }
 
 }

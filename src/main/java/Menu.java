@@ -2,7 +2,7 @@ import controller.University;
 import entity.Courses;
 import entity.Student;
 import controller.StudentController;
-
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Menu {
@@ -21,7 +21,6 @@ public class Menu {
                     + "\n4. View All Students \t\t \t\t\t\t8. View All Courses\n"
                     + "\n9. Exit University"
             );
-
             System.out.print("\nChoose one of the below options please: ");
             choice = scanner.nextLine();
 
@@ -58,7 +57,6 @@ public class Menu {
         return;
     }
 
-
     private void collectStudentInfoAndAddStudent() {
         Student student = new Student();
         Scanner scanner = new Scanner(System.in);
@@ -80,7 +78,7 @@ public class Menu {
 
     }
 
-    private void studentEnrollment() {
+    private boolean studentEnrollment() {
         System.out.println("Type your name please:");
         String name = scanner.nextLine();
         System.out.println("Type your surname:");
@@ -88,16 +86,29 @@ public class Menu {
         System.out.println("Type your gradeYear:");
         String gradeYear = scanner.nextLine();
 
+        return false;
     }
 
     private void showSingleStudentsInfo() {
+        System.out.println("Enter name of student to find:");
+        ArrayList<Student>students = studentController.findStudent(scanner.nextLine());
+        System.out.println(studentEnrollment());
+        for (Student currentStudent : students){
+            System.out.println(currentStudent.name + currentStudent.surname +" - " + currentStudent.gradeYear + "Grade Year.");
+        }
+        }
 
-    }
 
     private void showAllStudentsInfo() {
 
-
+        students = ArrayList < Student > students = studentController.getAllStudents();
+        for (Student currentStudent: students){
+            System.out.println(currentStudent.name + currentStudent.surname +" - " + currentStudent.gradeYear + "Grade Year.");
+        }
     }
+
+
+
 
 
     private void showAllCourses() {
