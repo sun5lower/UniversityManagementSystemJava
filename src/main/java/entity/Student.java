@@ -7,7 +7,7 @@ public class Student {
     public String name;
     public String surname;
     public int gradeYear;
-    public int totalCreditPoints = 30;
+    public String courseEnrolled;
 
     public String last_updated;
     public String created_at;
@@ -15,21 +15,26 @@ public class Student {
     public Student() {
     }
 
-    public Student(String name, String surname, int gradeYear, int totalCreditPoints, String last_updated, String created_at) {
+    public Student(int id, String name, String surname, int gradeYear, String courseEnrolled, String last_updated, String created_at) {
+        this.id = id;
         this.name = name;
         this.surname = surname;
         this.gradeYear = gradeYear;
-        this.totalCreditPoints = totalCreditPoints;
+        this.courseEnrolled = courseEnrolled;
         this.last_updated = last_updated;
         this.created_at = created_at;
     }
 
-    public Student(String name, String surName, int gradeYear, String created_at, String last_updated) {
+    public Student(int id, String name, String surName, int greadYear, String created_at, String last_updated) {
     }
 
-    public Student(int id, String name, String surName, int gradeYear, String created_at, String last_updated) {
+    public int getId() {
+        return id;
     }
 
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public String getName() {
         return name;
@@ -55,12 +60,12 @@ public class Student {
         this.gradeYear = gradeYear;
     }
 
-    public int getTotalCreditPoints() {
-        return totalCreditPoints;
+    public String getCourseEnrolled() {
+        return courseEnrolled;
     }
 
-    public void setTotalCreditPoints(int totalCreditPoints) {
-        this.totalCreditPoints = totalCreditPoints;
+    public void setCourseEnrolled(String courseEnrolled) {
+        this.courseEnrolled = courseEnrolled;
     }
 
     public String getLast_updated() {

@@ -34,9 +34,16 @@ public class StudentController {
 
 
 
+    public Student findStudentByID(Integer id){
+        Student student  = null;
 
-    public Student findStudent(String name){
-        return new Student();
+        try {
+            student = studentRepository.findStudentByID(id);
+        }catch (SQLException e){
+            System.out.println(e);
+        }
+
+        return student;
     }
 
 }

@@ -54,6 +54,7 @@ public class Menu {
             System.out.print("\n Enter C to continue\n");
             scanner.nextLine();
         } while (!choice.equals("9"));
+
         return;
     }
 
@@ -78,37 +79,35 @@ public class Menu {
 
     }
 
-    private boolean studentEnrollment() {
+    private void studentEnrollment() {
         System.out.println("Type your name please:");
         String name = scanner.nextLine();
         System.out.println("Type your surname:");
         String surname = scanner.nextLine();
-        System.out.println("Type your gradeYear:");
-        String gradeYear = scanner.nextLine();
-        System.out.println();
+        System.out.println("Enroll in:\n 1. ....\n2. ....\n3. ....\n4. ....\n5......");
 
-        return false;
+        String course = scanner.nextLine();
+        System.out.println(name + surname + "You are enrolled into " + course);
+
+
     }
 
-   private void showSingleStudentsInfo() {
-      System.out.println("Enter name of student to find:");
+    private void showSingleStudentsInfo() {
+        System.out.println("Enter ID of student to find:");
+
+
+        Student student = studentController.findStudentByID(scanner.nextInt());
+        System.out.println(student.name + " " + student.surname + " - " + "Year" + student.gradeYear + ". " + "Enrolled in " + student.courseEnrolled);
+    }
+
+        private void showAllStudentsInfo() {
         ArrayList<Student> students = new ArrayList<>();
-        studentController.findStudent(scanner.nextLine());
-        System.out.println(studentEnrollment());
+        students = studentController.getAll();
+
         for (Student currentStudent : students) {
-            System.out.println(currentStudent.name + currentStudent.surname + " - " + currentStudent.gradeYear + "Grade Year.");
-
-        }}
-
-    private void showAllStudentsInfo() {
-        ArrayList<Student> students = new ArrayList<>();
-            students = studentController.getAll();
-
-            for (Student currentStudent: students){
-                System.out.println(currentStudent.name + currentStudent.surname + currentStudent.gradeYear + currentStudent.id);
-            }
-       }
-
+            System.out.println(currentStudent.name + currentStudent.surname + currentStudent.gradeYear + currentStudent.id);
+        }
+    }
 
 
     private void showAllCourses() {
@@ -116,8 +115,7 @@ public class Menu {
             System.out.println(Courses.getName() +
                     " | " + currentCourses.getSurname() +
                     " | " + currentCourses.getGradeYear()); */
-        }
-
+    }
 
 
     private void viewExamResults() {
@@ -127,22 +125,6 @@ public class Menu {
     }
 }
 
-   /* private void showAllStudents() {
-        ArrayList<Student> students = ArrayList<Student>studentController.findStudent(scanner.nextLine());
-        System.out.println(students.size() + " Student found");
-        for (Student currentStudent: students){
-            System.out.println(currentStudent.getName() + " - " + currentStudent.getSurname());
-        }
-        System.out.println("All students");
-        students = studentController.getAll();
-
-                for (Student currentStudent: students){
-            System.out.println(Student.getName() +
-                    " | " + currentStudent.getSurname() +
-                    " | " + currentStudent.getGradeYear()); ;
 
 
-    //needs adjusting to courses info-variables
 
-
-*/
