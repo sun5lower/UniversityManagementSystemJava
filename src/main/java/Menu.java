@@ -1,3 +1,5 @@
+import controller.CourseController;
+import entity.Course;
 import entity.Student;
 import controller.StudentController;
 import java.util.ArrayList;
@@ -117,26 +119,29 @@ public class Menu {
 
 
     private void addCourse() {
-        Student student = new Student();
+        Course course = new Course();
         Scanner scanner = new Scanner(System.in);
-        StudentController studentController = new StudentController();
+        CourseController courseController = new CourseController();
 
-        Student newStudent = new Student();
-        System.out.println("Add a new Student");
+        Course newCourse = new Course();
+        System.out.println("Add a new Course");
 
         System.out.println("Enter name:");
-        newStudent.name = scanner.nextLine();
+        newCourse.name = scanner.nextLine();
 
-        System.out.println("Enter surname:");
-        newStudent.surname = scanner.nextLine();
+        System.out.println("Enter number of participants");
+        newCourse.number_attending = Integer.parseInt(scanner.nextLine());
 
-        System.out.println("Enter gradeYear:");
-        newStudent.gradeYear = Integer.parseInt(scanner.nextLine());
+        /*System.out.println("Enter time when the course Starts:");
+        newCourse.start_at = scanner.ti
 
-        System.out.println(studentController.collectStudentInfoAndAddStudent(newStudent));
+        System.out.println("Enter time when the course Ends:");
+        newCourse.start_at = scanner*/
+
+        System.out.println(courseController.addCourse(newCourse));
 
     }
-    }
+
 
     private void viewAllCourses() {
     }
