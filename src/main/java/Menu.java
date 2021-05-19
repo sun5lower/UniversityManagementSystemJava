@@ -1,5 +1,5 @@
 import controller.University;
-import entity.Courses;
+import entity.Course;
 import entity.Student;
 import controller.StudentController;
 import java.util.ArrayList;
@@ -85,39 +85,39 @@ public class Menu {
         String surname = scanner.nextLine();
         System.out.println("Type your gradeYear:");
         String gradeYear = scanner.nextLine();
+        System.out.println();
 
         return false;
     }
 
-    private void showSingleStudentsInfo() {
-        System.out.println("Enter name of student to find:");
-        ArrayList<Student>students = studentController.findStudent(scanner.nextLine());
+   private void showSingleStudentsInfo() {
+      System.out.println("Enter name of student to find:");
+        ArrayList<Student> students = new ArrayList<>();
+        studentController.findStudent(scanner.nextLine());
         System.out.println(studentEnrollment());
-        for (Student currentStudent : students){
-            System.out.println(currentStudent.name + currentStudent.surname +" - " + currentStudent.gradeYear + "Grade Year.");
-        }
-        }
+        for (Student currentStudent : students) {
+            System.out.println(currentStudent.name + currentStudent.surname + " - " + currentStudent.gradeYear + "Grade Year.");
 
+        }}
 
     private void showAllStudentsInfo() {
+        ArrayList<Student> students = new ArrayList<>();
+            students = studentController.getAll();
 
-        students = ArrayList < Student > students = studentController.getAllStudents();
-        for (Student currentStudent: students){
-            System.out.println(currentStudent.name + currentStudent.surname +" - " + currentStudent.gradeYear + "Grade Year.");
-        }
-    }
-
-
+            for (Student currentStudent: students){
+                System.out.println(currentStudent.name + currentStudent.surname + currentStudent.gradeYear + currentStudent.id);
+            }
+       }
 
 
 
     private void showAllCourses() {
-        for (Student currentCourses : university.getCourses()) {
+         /*for (Student currentCourses : university.getCourses()) {
             System.out.println(Courses.getName() +
                     " | " + currentCourses.getSurname() +
-                    " | " + currentCourses.getGradeYear());
+                    " | " + currentCourses.getGradeYear()); */
         }
-    }
+
 
 
     private void viewExamResults() {
@@ -125,6 +125,7 @@ public class Menu {
 
     private void viewAllCourses() {
     }
+}
 
    /* private void showAllStudents() {
         ArrayList<Student> students = ArrayList<Student>studentController.findStudent(scanner.nextLine());
@@ -138,10 +139,10 @@ public class Menu {
                 for (Student currentStudent: students){
             System.out.println(Student.getName() +
                     " | " + currentStudent.getSurname() +
-                    " | " + currentStudent.getGradeYear()); ;*/
+                    " | " + currentStudent.getGradeYear()); ;
 
 
     //needs adjusting to courses info-variables
 
 
-}
+*/

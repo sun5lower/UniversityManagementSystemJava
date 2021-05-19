@@ -1,6 +1,6 @@
 package entity;
 
-public class Courses {
+public class Course {
 
 
 

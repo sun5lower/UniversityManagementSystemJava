@@ -1,9 +1,15 @@
-package Repository;
-
+package repository;
 import database.DBHandler;
-import entity.Student;
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
+
+import entity.Student;
+
+
 public class StudentRepository {
     private DBHandler dbHandler = new DBHandler();
 
@@ -20,7 +26,6 @@ public class StudentRepository {
     }
     public ArrayList<Student> getAll() throws SQLException {
         Statement statement = dbHandler.getConnection().createStatement();
-
         String query = "SELECT * FROM student";
         ResultSet results = statement.executeQuery(query);
 
@@ -34,7 +39,7 @@ public class StudentRepository {
             String created_at = results.getString("created_at");
             String last_updated = results.getString("last_updated");
 
-            students.add(new Student(id, name, surName, gradeYear, created_at, last_updated));
+            students.add(new Student(id, name, surName,gradeYear, created_at,last_updated));
         }
 
         statement.close();

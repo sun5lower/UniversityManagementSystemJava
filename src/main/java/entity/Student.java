@@ -3,16 +3,33 @@ import java.time.LocalDate;
 import java.util.Scanner;
 
 public class Student {
-
-
+    public int id;
     public String name;
     public String surname;
     public int gradeYear;
+    public int totalCreditPoints = 30;
+
     public String last_updated;
     public String created_at;
 
+    public Student() {
+    }
+
+    public Student(String name, String surname, int gradeYear, int totalCreditPoints, String last_updated, String created_at) {
+        this.name = name;
+        this.surname = surname;
+        this.gradeYear = gradeYear;
+        this.totalCreditPoints = totalCreditPoints;
+        this.last_updated = last_updated;
+        this.created_at = created_at;
+    }
+
+    public Student(String name, String surName, int gradeYear, String created_at, String last_updated) {
+    }
+
     public Student(int id, String name, String surName, int gradeYear, String created_at, String last_updated) {
     }
+
 
     public String getName() {
         return name;
@@ -38,6 +55,14 @@ public class Student {
         this.gradeYear = gradeYear;
     }
 
+    public int getTotalCreditPoints() {
+        return totalCreditPoints;
+    }
+
+    public void setTotalCreditPoints(int totalCreditPoints) {
+        this.totalCreditPoints = totalCreditPoints;
+    }
+
     public String getLast_updated() {
         return last_updated;
     }
@@ -53,19 +78,6 @@ public class Student {
     public void setCreated_at(String created_at) {
         this.created_at = created_at;
     }
-
-
-    public Student(String name, String surname, int gradeYear, String last_updated, String created_at) {
-        this.name = name;
-        this.surname = surname;
-        this.gradeYear = gradeYear;
-        this.last_updated = last_updated;
-        this.created_at = created_at;
-    }
-
-    public Student() {
-    }
-
 }
     /*
 

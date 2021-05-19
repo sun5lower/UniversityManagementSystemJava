@@ -1,13 +1,14 @@
 package controller;
-
-import Repository.StudentRepository;
 import entity.Student;
-
+import repository.StudentRepository;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+
+
 public class StudentController {
-StudentRepository studentRepository = new StudentRepository();
+
+    StudentRepository studentRepository = new StudentRepository();
 
     public String collectStudentInfoAndAddStudent(Student student) {
 
@@ -20,9 +21,8 @@ StudentRepository studentRepository = new StudentRepository();
         return "Student added successfully";
     }
 
-    public ArrayList<Student> getAllStudents() {
+    public ArrayList<Student> getAll() {
         ArrayList<Student> students = new ArrayList<Student>();
-
         try {
             students = studentRepository.getAll();
         }catch (SQLException e){
@@ -31,6 +31,10 @@ StudentRepository studentRepository = new StudentRepository();
 
         return students;
     }
+
+
+
+
     public Student findStudent(String name){
         return new Student();
     }
