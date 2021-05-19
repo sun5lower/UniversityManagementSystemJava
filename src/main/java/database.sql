@@ -12,3 +12,14 @@ CREATE TABLE IF NOT EXISTS Student(
 );
 use University;
 ALTER TABLE student ADD column courseEnrolled varchar(20);
+
+CREATE TABLE Course(
+id int not null auto_increment,
+    name varchar(100) not null,
+    start_at time,
+    end_at time,
+    number_attending int not null,
+    last_updated timestamp default current_timestamp,
+    created_at timestamp default current_timestamp,
+    primary key(id)
+);

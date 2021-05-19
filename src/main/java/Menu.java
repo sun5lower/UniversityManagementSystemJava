@@ -1,5 +1,3 @@
-import controller.University;
-import entity.Course;
 import entity.Student;
 import controller.StudentController;
 import java.util.ArrayList;
