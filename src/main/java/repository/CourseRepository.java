@@ -7,12 +7,12 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Scanner;
-import entity.C
+import entity.*
 
 
 public class CourseRepository {
     private DBHandler dbHandler = new DBHandler();
-    public void addCourse(Student student) throws SQLException {
+    public void addCourse(courses.Course student) throws SQLException {
         Connection connection = dbHandler.getConnection();
         String query = "INSERT INTO course(name, surName, gradeYear) VALUES(?,?,?)";
         PreparedStatement preparedStatement = connection.prepareStatement(query);
