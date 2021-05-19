@@ -25,8 +25,6 @@ public class Student {
         this.created_at = created_at;
     }
 
-    public Student(int id, String name, String surName, int greadYear, String created_at, String last_updated) {
-    }
 
     public int getId() {
         return id;

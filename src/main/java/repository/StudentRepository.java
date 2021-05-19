@@ -7,9 +7,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Scanner;
-
 import entity.Student;
-
 
 public class StudentRepository {
     private DBHandler dbHandler = new DBHandler();
@@ -35,6 +33,7 @@ public class StudentRepository {
         preparedStatement.setString(1, student.getName());
         preparedStatement.setString(2, student.getSurname());
         preparedStatement.setInt(3, student.getGradeYear());
+        preparedStatement.setInt(4, student.course());
 
         preparedStatement.execute();
 
@@ -53,10 +52,11 @@ public class StudentRepository {
             String name = results.getString("name");
             String surName = results.getString("surname");
             int gradeYear = results.getInt("gradeYear");
+            String courseEnrolled = results.getString ("courseEnrolled");
             String created_at = results.getString("created_at");
             String last_updated = results.getString("last_updated");
 
-            students.add(new Student(id, name, surName, gradeYear, created_at, last_updated));
+            students.add(new Student(id, name, surName, gradeYear,courseEnrolled, created_at, last_updated));
         }
 
         statement.close();
@@ -79,7 +79,8 @@ public class StudentRepository {
                 results.getInt("id"),
                 results.getString("name"),
                 results.getString("surName"),
-                results.getInt("gradYear"),
+                results.getInt("gradeYear"),
+                results.getString("courseEnrolled"),
                 results.getString("created_at"),
                 results.getString("last_updated")
         );

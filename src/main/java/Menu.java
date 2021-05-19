@@ -103,9 +103,9 @@ public class Menu {
         private void showAllStudentsInfo() {
         ArrayList<Student> students = new ArrayList<>();
         students = studentController.getAll();
-
+            System.out.println("All students in the University:\n" );
         for (Student currentStudent : students) {
-            System.out.println(currentStudent.name + currentStudent.surname + currentStudent.gradeYear + currentStudent.id);
+         System.out.println("ID " + currentStudent.id + " - "+ currentStudent.name + " " + currentStudent.surname +". " +  "Grade Year - " + currentStudent.gradeYear + "Enrolled into: " + currentStudent.courseEnrolled);
         }
     }
 

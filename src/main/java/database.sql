@@ -10,4 +10,5 @@ CREATE TABLE IF NOT EXISTS Student(
     created_at timestamp default current_timestamp,
     primary key(id)
 );
-
+use University;
+ALTER TABLE student ADD column courseEnrolled varchar(20);

@@ -5,11 +5,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 
-
 public class StudentController {
-
     StudentRepository studentRepository = new StudentRepository();
-
     public String collectStudentInfoAndAddStudent(Student student) {
 
         try {
