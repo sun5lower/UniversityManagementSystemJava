@@ -49,4 +49,27 @@ public class ExamRepository {
         return exams;
     }
 
+    public Exam getExam(String courseName) throws SQLException {
+        Exam exam;
+
+        Statement statement = dbHandler.getConnection().createStatement();
+        String query = "SELECT * FROM ExamList WHERE courseName LIKE '%" + courseName + "%'";
+
+        ResultSet results = statement.executeQuery(query);
+
+        results.next();
+        exam = new Exam(
+                results.getInt("id"),
+                results.getString("courseName"),
+                results.getString("examDate"),
+                results.getString("studentName"),
+                results.getInt("result"),
+                results.getString("created_at"),
+                results.getString("last_updated")
+        );
+
+        statement.close();
+
+        return exam;
+    }
 }

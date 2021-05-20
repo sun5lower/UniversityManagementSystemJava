@@ -7,6 +7,7 @@ import java.util.ArrayList;
 
 public class StudentController {
     StudentRepository studentRepository = new StudentRepository();
+
     public String collectStudentInfoAndAddStudent(Student student) {
 
         try {
@@ -22,7 +23,7 @@ public class StudentController {
         ArrayList<Student> students = new ArrayList<Student>();
         try {
             students = studentRepository.getAll();
-        }catch (SQLException e){
+        } catch (SQLException e) {
             System.out.println(e);
         }
 
@@ -30,13 +31,12 @@ public class StudentController {
     }
 
 
-
-    public Student findStudentByID(Integer id){
-        Student student  = null;
+    public Student findStudentByID(Integer id) {
+        Student student = null;
 
         try {
             student = studentRepository.findStudentByID(id);
-        }catch (SQLException e){
+        } catch (SQLException e) {
             System.out.println(e);
         }
 

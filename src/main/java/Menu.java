@@ -12,6 +12,7 @@ public class Menu {
     Scanner scanner = new Scanner(System.in);
     StudentController studentController = new StudentController();
     CourseController courseController = new CourseController();
+    ExamController examController = new ExamController();
 
     public void showHomeScreen() {
         String choice = "";
@@ -162,7 +163,12 @@ public class Menu {
     }
 
     private void viewSingleExamResults() {
+        System.out.println("Enter course name to find:");
+        Exam exam = examController.findExamByCourseName(scanner.nextLine());
+        System.out.println(exam.courseName + " " + exam.examDate + " - " +  exam.studentName + ". " + exam.result);
     }
+
+
     private void studentEnrollment() {
 
     }

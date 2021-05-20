@@ -1,5 +1,6 @@
 package controller;
 import entity.Exam;
+import entity.Student;
 import repository.ExamRepository;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -28,7 +29,17 @@ public class ExamController {
 
         return exams;
     }
+    public Exam findExamByCourseName(String courseName) {
+        Exam exam = null;
 
+        try {
+            exam = examRepository.getExam(courseName);
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+
+        return exam;
+    }
 
 
 }

@@ -24,21 +24,6 @@ public class StudentRepository {
         preparedStatement.close();
     }
 
-    public void studentEnrollment(Student student) throws SQLException {
-        Connection connection = dbHandler.getConnection();
-
-       /* How to make update in existing database where were collecting student info - adding courses in which enroll???
-       String query = "INSERT INTO student(name, surName, gradeYear) VALUES(?,?,?)";
-        PreparedStatement preparedStatement = connection.prepareStatement(query);
-        preparedStatement.setString(1, student.getName());
-        preparedStatement.setString(2, student.getSurname());
-        preparedStatement.setInt(3, student.getGradeYear());
-        preparedStatement.setInt(4, student.course());
-
-        preparedStatement.execute();
-
-        preparedStatement.close();*/
-    }
 
     public ArrayList<Student> getAll() throws SQLException {
         Statement statement = dbHandler.getConnection().createStatement();
