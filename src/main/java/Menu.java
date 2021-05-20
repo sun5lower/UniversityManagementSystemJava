@@ -2,26 +2,26 @@ import controller.CourseController;
 import entity.Course;
 import entity.Student;
 import controller.StudentController;
+
+import java.sql.Time;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Menu {
     Scanner scanner = new Scanner(System.in);
-
     StudentController studentController = new StudentController();
-
-
+CourseController courseController = new CourseController();
     public void showHomeScreen() {
         String choice = "";
         do {
             System.out.println("Welcome to the University\n"
                     + "\n1. Add Student \t\t\t\t\t\t\t\t5. Add Courses"
                     + "\n2. Enroll student in to the course\t\t\t6. View All Courses"
-                    + "\n3. View Individual Student \t\t\t\t\t7. View Exam Results"
-                    + "\n4. View All Students \t\t \t\t\t\t8. View All Courses\n"
+                    + "\n3. View Individual Student \t\t\t\t\t7. View Exam List"
+                    + "\n4. View All Students \t\t \t\t\t\t8. View Single Exam Results\n"
                     + "\n9. Exit University"
             );
-            System.out.print("\nChoose one of the below options please: ");
+            System.out.print("\nChoose one of the options please: ");
             choice = scanner.nextLine();
 
             switch (choice) {
@@ -36,14 +36,18 @@ public class Menu {
                     break;
                 case "4":
                     showAllStudentsInfo();
+                    break;
                 case "5":
-                    showAllCourses();
+                    addCourse();
                     break;
                 case "6":
                     viewAllCourses();
                     break;
                 case "7":
-                    addCourse();
+                    viewExamsList();
+                    break;
+                case "8":
+                   viewSingleExamResults();
                     break;
                 case "9":
                     System.out.println("Have a great day!");
@@ -88,36 +92,22 @@ public class Menu {
 
         String course = scanner.nextLine();
         System.out.println(name + surname + "You are enrolled into " + course);
-
-
     }
 
     private void showSingleStudentsInfo() {
         System.out.println("Enter ID of student to find:");
-
-
         Student student = studentController.findStudentByID(scanner.nextInt());
         System.out.println(student.name + " " + student.surname + " - " + "Year" + student.gradeYear + ". " + "Enrolled in " + student.courseEnrolled);
     }
 
-        private void showAllStudentsInfo() {
+    private void showAllStudentsInfo() {
         ArrayList<Student> students = new ArrayList<>();
         students = studentController.getAll();
-            System.out.println("All students in the University:\n" );
+        System.out.println("All students in the University:\n");
         for (Student currentStudent : students) {
-         System.out.println("ID " + currentStudent.id + " - "+ currentStudent.name + " " + currentStudent.surname +". " +  "Grade Year - " + currentStudent.gradeYear + "Enrolled into: " + currentStudent.courseEnrolled);
+            System.out.println("ID " + currentStudent.id + " - " + currentStudent.name + " " + currentStudent.surname + ". " + "Grade Year - " + currentStudent.gradeYear + "Enrolled into: " + currentStudent.courseEnrolled);
         }
     }
-
-
-    private void showAllCourses() {
-         /*for (Student currentCourses : university.getCourses()) {
-            System.out.println(Courses.getName() +
-                    " | " + currentCourses.getSurname() +
-                    " | " + currentCourses.getGradeYear()); */
-    }
-
-
     private void addCourse() {
         Course course = new Course();
         Scanner scanner = new Scanner(System.in);
@@ -132,19 +122,30 @@ public class Menu {
         System.out.println("Enter number of participants");
         newCourse.number_attending = Integer.parseInt(scanner.nextLine());
 
-        /*System.out.println("Enter time when the course Starts:");
-        newCourse.start_at = scanner.ti
+        System.out.println("Enter time when the course Starts:");
+        newCourse.start_at = Time.valueOf(scanner.nextLine());
 
         System.out.println("Enter time when the course Ends:");
-        newCourse.start_at = scanner*/
+        newCourse.start_at = Time.valueOf(scanner.nextLine());
 
         System.out.println(courseController.addCourse(newCourse));
 
     }
-
-
     private void viewAllCourses() {
+        ArrayList<Course> courses = new ArrayList<>();
+        courses = courseController.getAll();
+
+        System.out.println("Course schedule:\n");
+        for (Course currentCourse : courses) {
+            System.out.println("ID " + currentCourse.id + " - " + currentCourse.name +
+                    " | " + currentCourse.start_at +
+                    " | " + currentCourse.end_at +
+                    " | " + currentCourse.number_attending);
+        }
     }
+
+    private void   viewExamsList(){}
+    private void   viewSingleExamResults(){}
 }
 
 
