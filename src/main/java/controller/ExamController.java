@@ -1,4 +1,34 @@
 package controller;
+import entity.Exam;
+import repository.ExamRepository;
+import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class ExamController {
+
+    ExamRepository examRepository = new ExamRepository();
+    public String createExamList(Exam exam) {
+
+        try {
+            examRepository.createExamList(exam);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return "error with creating exam";
+        }
+        return "Exam created successfully";
+    }
+
+    public ArrayList<Exam> getAll() {
+        ArrayList<Exam> exams = new ArrayList<Exam>();
+        try {
+            exams = examRepository.getAll();
+        }catch (SQLException e){
+            System.out.println(e);
+        }
+
+        return exams;
+    }
+
+
+
 }

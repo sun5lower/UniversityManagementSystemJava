@@ -1,5 +1,7 @@
 import controller.CourseController;
+import controller.ExamController;
 import entity.Course;
+import entity.Exam;
 import entity.Student;
 import controller.StudentController;
 import java.sql.Time;
@@ -16,7 +18,7 @@ CourseController courseController = new CourseController();
             System.out.println("Welcome to the University\n"
                     + "\n1. Add Student \t\t\t\t\t\t\t\t5. Add Courses"
                     + "\n2. Enroll student in to the course\t\t\t6. View All Courses"
-                    + "\n3. View Individual Student \t\t\t\t\t7. View Exam List"
+                    + "\n3. View Individual Student \t\t\t\t\t7. Create Exam List"
                     + "\n4. View All Students \t\t \t\t\t\t8. View Single Exam Results\n"
                     + "\n9. Exit University"
             );
@@ -43,7 +45,7 @@ CourseController courseController = new CourseController();
                     viewAllCourses();
                     break;
                 case "7":
-                    viewExamsList();
+                    createExamList();
                     break;
                 case "8":
                    viewSingleExamResults();
@@ -82,23 +84,11 @@ CourseController courseController = new CourseController();
 
     }
 
-    private void studentEnrollment() {
-        System.out.println("Type your name please:");
-        String name = scanner.nextLine();
-        System.out.println("Type your surname:");
-        String surname = scanner.nextLine();
-        System.out.println("Enroll in:\n 1. ....\n2. ....\n3. ....\n4. ....\n5......");
-
-        String course = scanner.nextLine();
-        System.out.println(name + surname + "You are enrolled into " + course);
-    }
-
     private void showSingleStudentsInfo() {
         System.out.println("Enter ID of student to find:");
         Student student = studentController.findStudentByID(scanner.nextInt());
         System.out.println(student.name + " " + student.surname + " - " + "Year" + student.gradeYear + ". " + "Enrolled in " + student.courseEnrolled);
     }
-
     private void showAllStudentsInfo() {
         ArrayList<Student> students = new ArrayList<>();
         students = studentController.getAll();
@@ -143,8 +133,37 @@ CourseController courseController = new CourseController();
         }
     }
 
-    private void   viewExamsList(){}
-    private void   viewSingleExamResults(){}
+    private void  createExamList(){
+        Exam exam = new Exam();
+        Scanner scanner = new Scanner(System.in);
+        ExamController examController = new ExamController();
+
+        Exam newExam = new Exam();
+        System.out.println("Add a new Course");
+
+        System.out.println("Enter course name:");
+        newExam.courseName = scanner.nextLine();
+
+        System.out.println("Enter Exam Date:");
+        newExam.examDate = scanner.nextLine();
+
+        System.out.println("Enter Student Name:");
+        newExam.studentName = scanner.nextLine();
+
+        System.out.println("Enter result");
+        newExam.result = Integer.parseInt(scanner.nextLine());
+
+        System.out.println(examController.createExamList(newExam));
+
+    }
+
+
+
+    private void viewSingleExamResults(){}
+
+
+    private void studentEnrollment() {
+
 }
 
 
