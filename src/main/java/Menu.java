@@ -18,27 +18,29 @@ public class Menu {
         String choice = "";
         do {
             System.out.println("Welcome to the University\n"
-                    + "\n1. Add Student \t\t\t\t\t\t\t\t5. Add Courses"
-                    + "\n2. Enroll student in to the course\t\t\t6. View All Courses"
-                    + "\n3. View Individual Student \t\t\t\t\t7. Create Exam List"
-                    + "\n4. View All Students \t\t \t\t\t\t8. View Single Exam Results\n"
-                    + "\n9. Exit University"
+                    + "\n1. Add Student \t\t\t\t\t\t\t\t6. Add Course"
+                    + "\n2. View All Students \t\t \t\t\t\t7. View All Courses"
+                    + "\n3. View Single Student info \t\t\t\t\t8. View Single Course info"
+                    + "\n4. Enroll student in to the course \t\t\t\t\t9. Create Exam List"
+                    + "\n5. View Exam List \t\t\t\t\t10. View Single Exam results"
+                    + "\n11. Exit University"
             );
-            System.out.print("\nChoose one of the options please: ");
+
+            System.out.print("\nChoose the number for activity You would like to perform: ");
             choice = scanner.nextLine();
 
             switch (choice) {
                 case "1":
-                    collectStudentInfoAndAddStudent();
+                    AddStudent();
                     break;
                 case "2":
-                    studentEnrollment();
+                    viewAllStudents();
                     break;
                 case "3":
-                    showSingleStudentsInfo();
+                    viewSingleStudentsInfo();
                     break;
                 case "4":
-                    showAllStudentsInfo();
+                    enrollStudentToCourse();
                     break;
                 case "5":
                     addCourse();
@@ -50,9 +52,15 @@ public class Menu {
                     createExamList();
                     break;
                 case "8":
-                    viewSingleExamResults();
+                    viewSingleCourseInfo();
                     break;
                 case "9":
+                    createExamList();
+                    break;
+                case "10":
+                    viewSingleExamResults();
+                    break;
+                case "11":
                     System.out.println("Have a great day!");
                     return;
                 default:
@@ -60,12 +68,12 @@ public class Menu {
             }
             System.out.print("\n Enter C to continue\n");
             scanner.nextLine();
-        } while (!choice.equals("9"));
+        } while (!choice.equals("11"));
 
         return;
     }
 
-    private void collectStudentInfoAndAddStudent() {
+    private void AddStudent() {
         Student student = new Student();
         Scanner scanner = new Scanner(System.in);
         StudentController studentController = new StudentController();
@@ -82,17 +90,10 @@ public class Menu {
         System.out.println("Enter gradeYear:");
         newStudent.gradeYear = Integer.parseInt(scanner.nextLine());
 
-        System.out.println(studentController.collectStudentInfoAndAddStudent(newStudent));
+        System.out.println(studentController.addStudent(newStudent));
 
     }
-
-    private void showSingleStudentsInfo() {
-        System.out.println("Enter ID of student to find:");
-        Student student = studentController.findStudentByID(scanner.nextInt());
-        System.out.println(student.name + " " + student.surname + " - " + "Year" + student.gradeYear + ". " + "Enrolled in " + student.courseEnrolled);
-    }
-
-    private void showAllStudentsInfo() {
+    private void viewAllStudents() {
         ArrayList<Student> students = new ArrayList<>();
         students = studentController.getAll();
         System.out.println("All students in the University:\n");
@@ -100,7 +101,12 @@ public class Menu {
             System.out.println("ID " + currentStudent.id + " - " + currentStudent.name + " " + currentStudent.surname + ". " + "Grade Year - " + currentStudent.gradeYear + "Enrolled into: " + currentStudent.courseEnrolled);
         }
     }
-
+    private void viewSingleStudentsInfo() {
+        System.out.println("Enter ID of student to find:");
+        Student student = studentController.findStudentByID(scanner.nextInt());
+        System.out.println(student.name + " " + student.surname + " - " + "Year" + student.gradeYear + ". " + "Enrolled in " + student.courseEnrolled);
+    }
+    private void enrollStudentToCourse() {}
     private void addCourse() {
         Course course = new Course();
         Scanner scanner = new Scanner(System.in);
@@ -124,7 +130,6 @@ public class Menu {
         System.out.println(courseController.addCourse(newCourse));
 
     }
-
     private void viewAllCourses() {
         ArrayList<Course> courses = new ArrayList<>();
         courses = courseController.getAll();
@@ -137,7 +142,7 @@ public class Menu {
                     " | " + currentCourse.number_attending);
         }
     }
-
+    private void viewSingleCourseInfo(){}
     private void createExamList() {
         Exam exam = new Exam();
         Scanner scanner = new Scanner(System.in);
@@ -161,7 +166,6 @@ public class Menu {
         System.out.println(examController.createExamList(newExam));
 
     }
-
     private void viewSingleExamResults() {
         System.out.println("Enter course name to find:");
         Exam exam = examController.findExamByCourseName(scanner.nextLine());
@@ -169,9 +173,6 @@ public class Menu {
     }
 
 
-    private void studentEnrollment() {
-
-    }
 }
 
 

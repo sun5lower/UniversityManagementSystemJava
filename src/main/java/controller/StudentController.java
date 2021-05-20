@@ -8,10 +8,10 @@ import java.util.ArrayList;
 public class StudentController {
     StudentRepository studentRepository = new StudentRepository();
 
-    public String collectStudentInfoAndAddStudent(Student student) {
+    public String addStudent(Student student) {
 
         try {
-            studentRepository.collectStudentInfoAndAddStudent(student);
+            studentRepository.addStudent(student);
         } catch (SQLException e) {
             e.printStackTrace();
             return "error with adding student";

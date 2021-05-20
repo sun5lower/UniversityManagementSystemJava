@@ -1,13 +1,8 @@
 package repository;
-
 import database.DBHandler;
-
 import entity.Exam;
-import entity.Student;
-
 import java.sql.*;
 import java.util.ArrayList;
-
 public class ExamRepository {
 
     private DBHandler dbHandler = new DBHandler();

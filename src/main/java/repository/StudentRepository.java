@@ -12,7 +12,7 @@ import entity.Student;
 public class StudentRepository {
     private DBHandler dbHandler = new DBHandler();
 
-    public void collectStudentInfoAndAddStudent(Student student) throws SQLException {
+    public void addStudent(Student student) throws SQLException {
         Connection connection = dbHandler.getConnection();
         String query = "INSERT INTO student(name, surName, gradeYear) VALUES(?,?,?)";
         PreparedStatement preparedStatement = connection.prepareStatement(query);
