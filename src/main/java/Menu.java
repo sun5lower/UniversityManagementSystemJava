@@ -15,6 +15,18 @@ public class Menu {
     ExamController examController = new ExamController();
 
     public void showHomeScreen() {
+        String PIN = "";
+        System.out.println("Please enter your PIN");
+        while (!PIN.equals("8888")) {
+            PIN = scanner.next().trim();
+            if (PIN.equals("8888")) {
+                break;
+            } else {
+                System.out.println("Incorrect, please try again.");
+            }
+        }
+        System.out.println("PIN is correct!");
+
         String choice = "";
         do {
             System.out.println("Welcome to the University\n"
