@@ -20,9 +20,9 @@ public class Menu {
             System.out.println("Welcome to the University\n"
                     + "\n1. Add Student \t\t\t\t\t\t\t\t6. Add Course"
                     + "\n2. View All Students \t\t \t\t\t\t7. View All Courses"
-                    + "\n3. View Single Student info \t\t\t\t\t8. View Single Course info"
-                    + "\n4. Enroll student in to the course \t\t\t\t\t9. Create Exam List"
-                    + "\n5. View Exam List \t\t\t\t\t10. View Single Exam results"
+                    + "\n3. View Single Student info \t\t\t\t8. View Single Course info"
+                    + "\n4. Enroll student in to the course \t\t\t9. Create Exam List"
+                    + "\n5. View Exam List \t\t\t\t\t\t\t10. View Single Exam results\n"
                     + "\n11. Exit University"
             );
 
