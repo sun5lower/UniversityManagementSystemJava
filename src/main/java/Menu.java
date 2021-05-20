@@ -118,7 +118,9 @@ public class Menu {
         Student student = studentController.findStudentByID(scanner.nextInt());
         System.out.println(student.name + " " + student.surname + " - " + "Year" + student.gradeYear + ". " + "Enrolled in " + student.courseEnrolled);
     }
-    private void enrollStudentToCourse() {}
+    private void enrollStudentToCourse() {
+
+    }
     private void addCourse() {
         Course course = new Course();
         Scanner scanner = new Scanner(System.in);

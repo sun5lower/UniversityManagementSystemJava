@@ -7,6 +7,9 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Scanner;
+
+import entity.Course;
+import entity.Exam;
 import entity.Student;
 
 public class StudentRepository {
@@ -74,7 +77,12 @@ public class StudentRepository {
 
         return student;
     }
-}
+
+
+
+
+   }
+
 
 
 
