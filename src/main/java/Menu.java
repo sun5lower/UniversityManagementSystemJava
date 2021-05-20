@@ -11,7 +11,8 @@ import java.util.Scanner;
 public class Menu {
     Scanner scanner = new Scanner(System.in);
     StudentController studentController = new StudentController();
-CourseController courseController = new CourseController();
+    CourseController courseController = new CourseController();
+
     public void showHomeScreen() {
         String choice = "";
         do {
@@ -48,7 +49,7 @@ CourseController courseController = new CourseController();
                     createExamList();
                     break;
                 case "8":
-                   viewSingleExamResults();
+                    viewSingleExamResults();
                     break;
                 case "9":
                     System.out.println("Have a great day!");
@@ -89,6 +90,7 @@ CourseController courseController = new CourseController();
         Student student = studentController.findStudentByID(scanner.nextInt());
         System.out.println(student.name + " " + student.surname + " - " + "Year" + student.gradeYear + ". " + "Enrolled in " + student.courseEnrolled);
     }
+
     private void showAllStudentsInfo() {
         ArrayList<Student> students = new ArrayList<>();
         students = studentController.getAll();
@@ -97,6 +99,7 @@ CourseController courseController = new CourseController();
             System.out.println("ID " + currentStudent.id + " - " + currentStudent.name + " " + currentStudent.surname + ". " + "Grade Year - " + currentStudent.gradeYear + "Enrolled into: " + currentStudent.courseEnrolled);
         }
     }
+
     private void addCourse() {
         Course course = new Course();
         Scanner scanner = new Scanner(System.in);
@@ -120,6 +123,7 @@ CourseController courseController = new CourseController();
         System.out.println(courseController.addCourse(newCourse));
 
     }
+
     private void viewAllCourses() {
         ArrayList<Course> courses = new ArrayList<>();
         courses = courseController.getAll();
@@ -133,7 +137,7 @@ CourseController courseController = new CourseController();
         }
     }
 
-    private void  createExamList(){
+    private void createExamList() {
         Exam exam = new Exam();
         Scanner scanner = new Scanner(System.in);
         ExamController examController = new ExamController();
@@ -157,15 +161,12 @@ CourseController courseController = new CourseController();
 
     }
 
-
-
-    private void viewSingleExamResults(){}
-
-
+    private void viewSingleExamResults() {
+    }
     private void studentEnrollment() {
 
+    }
 }
-
 
 
 
