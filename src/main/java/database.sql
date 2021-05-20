@@ -38,3 +38,12 @@ CREATE TABLE IF NOT EXISTS ExamList(
     created_at timestamp default current_timestamp,
     primary key(id)
 );
+USE University;
+CREATE TABLE IF NOT EXISTS CourseEnrollment(
+    id int not null auto_increment,
+    studentId int not null,
+    courseId int not null,
+    last_updated timestamp default current_timestamp,
+    created_at timestamp default current_timestamp,
+    primary key(id)
+);

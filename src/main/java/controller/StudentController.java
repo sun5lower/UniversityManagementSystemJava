@@ -1,7 +1,12 @@
 package controller;
+import database.DBHandler;
 import entity.Student;
 import repository.StudentRepository;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 
 
@@ -42,5 +47,16 @@ public class StudentController {
 
         return student;
     }
+    public String delete (Student student) {
+
+        try {
+            studentRepository.delete(student);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return "error with deleting student";
+        }
+        return student.name + " " + student.surname + "Student deleted successfully";
+    }
 
 }
+

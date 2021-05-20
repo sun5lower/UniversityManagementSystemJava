@@ -16,8 +16,8 @@ public class CourseRepository {
         String query = "INSERT INTO course(name, start_at, end_at, number_attending) VALUES(?,?,?,?)";
         PreparedStatement preparedStatement = connection.prepareStatement(query);
         preparedStatement.setString(1, course.name);
-        preparedStatement.setInt(2, course.start_at);
-        preparedStatement.setInt(3, course.end_at);
+        preparedStatement.setString(2, course.start_at);
+        preparedStatement.setString(3, course.end_at);
         preparedStatement.setInt(4, course.number_attending);
 
         preparedStatement.execute();
@@ -34,8 +34,8 @@ public class CourseRepository {
         while (results.next()) {
             int id = results.getInt("id");
             String name = results.getString("name");
-            int start_at = results.getInt("start_at");
-            int end_at = results.getInt("end_at");
+            String start_at = results.getString("start_at");
+            String end_at = results.getString("end_at");
             int number_attending = results.getInt("number_attending");
             String created_at = results.getString("created_at");
             String last_updated = results.getString("last_updated");
@@ -62,8 +62,8 @@ public class CourseRepository {
         course = new Course(
                 results.getInt("id"),
                 results.getString("name"),
-                results.getInt("start_at"),
-                results.getInt("end_at"),
+                results.getString("start_at"),
+                results.getString("end_at"),
                 results.getInt("number_attending"),
                 results.getString("created_at"),
                 results.getString("last_updated")

@@ -1,15 +1,9 @@
 package repository;
 import database.DBHandler;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.Scanner;
 
-import entity.Course;
-import entity.Exam;
+import java.sql.*;
+import java.util.ArrayList;
+
 import entity.Student;
 
 public class StudentRepository {
@@ -78,11 +72,19 @@ public class StudentRepository {
         return student;
     }
 
+public void delete(Student student) throws SQLException{
+    Connection connection = dbHandler.getConnection();
+     String query = "DELETE FROM student WHERE id=?";
+    PreparedStatement preparedStatement = connection.prepareStatement(query);
+
+    preparedStatement.setInt(1, student.getId());
 
 
+    preparedStatement.execute();
 
-   }
-
+    preparedStatement.close();
+}
+}
 
 
 
