@@ -42,14 +42,14 @@ public class Menu {
                 case "4":
                     enrollStudentToCourse();
                     break;
-                case "5":
+                case "6":
                     addCourse();
                     break;
-                case "6":
+                case "7":
                     viewAllCourses();
                     break;
-                case "7":
-                    createExamList();
+                case "5":
+                    viewExamList();
                     break;
                 case "8":
                     viewSingleCourseInfo();
@@ -98,7 +98,7 @@ public class Menu {
         students = studentController.getAll();
         System.out.println("All students in the University:\n");
         for (Student currentStudent : students) {
-            System.out.println("ID " + currentStudent.id + " - " + currentStudent.name + " " + currentStudent.surname + ". " + "Grade Year - " + currentStudent.gradeYear + "Enrolled into: " + currentStudent.courseEnrolled);
+            System.out.println("ID " + currentStudent.id + " - " + currentStudent.name + " " + currentStudent.surname + ". " + "Year " + currentStudent.gradeYear);
         }
     }
     private void viewSingleStudentsInfo() {
@@ -166,6 +166,7 @@ public class Menu {
         System.out.println(examController.createExamList(newExam));
 
     }
+    private void viewExamList(){}
     private void viewSingleExamResults() {
         System.out.println("Enter course name to find:");
         Exam exam = examController.findExamByCourseName(scanner.nextLine());
