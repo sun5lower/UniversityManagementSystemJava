@@ -1,6 +1,5 @@
 package controller;
 import entity.Course;
-import entity.Student;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import repository.CourseRepository;

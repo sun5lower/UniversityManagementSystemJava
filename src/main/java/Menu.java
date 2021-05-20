@@ -2,7 +2,6 @@ import controller.CourseController;
 import entity.Course;
 import entity.Student;
 import controller.StudentController;
-
 import java.sql.Time;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -119,14 +118,14 @@ CourseController courseController = new CourseController();
         System.out.println("Enter name:");
         newCourse.name = scanner.nextLine();
 
-        System.out.println("Enter number of participants");
-        newCourse.number_attending = Integer.parseInt(scanner.nextLine());
-
         System.out.println("Enter time when the course Starts:");
-        newCourse.start_at = Time.valueOf(scanner.nextLine());
+        newCourse.start_at = Integer.parseInt(scanner.nextLine());
 
         System.out.println("Enter time when the course Ends:");
-        newCourse.start_at = Time.valueOf(scanner.nextLine());
+        newCourse.start_at = Integer.parseInt(scanner.nextLine());
+
+        System.out.println("Enter number of participants");
+        newCourse.number_attending = Integer.parseInt(scanner.nextLine());
 
         System.out.println(courseController.addCourse(newCourse));
 

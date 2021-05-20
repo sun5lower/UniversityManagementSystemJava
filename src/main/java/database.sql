@@ -23,3 +23,6 @@ id int not null auto_increment,
     created_at timestamp default current_timestamp,
     primary key(id)
 );
+
+ALTER TABLE Course MODIFY COLUMN start_at varchar(20);
+ALTER TABLE Course MODIFY COLUMN end_at varchar(20);
