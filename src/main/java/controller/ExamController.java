@@ -29,6 +29,18 @@ public class ExamController {
 
         return exams;
     }
+
+    public ArrayList<Exam> getAllStudentExam(int studentId) {
+        ArrayList<Exam> exams = new ArrayList<Exam>();
+        try {
+            exams = examRepository.getAllStudentExam(studentId);
+        }catch (SQLException e){
+            System.out.println(e);
+        }
+
+        return exams;
+    }
+
     public Exam findExamByCourseName(String courseName) {
         Exam exam = null;
 

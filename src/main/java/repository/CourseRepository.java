@@ -2,6 +2,7 @@ package repository;
 
 import database.DBHandler;
 
+import entity.CourseEnrollment;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -13,12 +14,10 @@ public class CourseRepository {
 
     public void addCourse(Course course) throws SQLException {
         Connection connection = dbHandler.getConnection();
-        String query = "INSERT INTO course(name, start_at, end_at, number_attending) VALUES(?,?,?,?)";
+        String query = "INSERT INTO course(name) VALUES(?)";
         PreparedStatement preparedStatement = connection.prepareStatement(query);
         preparedStatement.setString(1, course.name);
-        preparedStatement.setString(2, course.start_at);
-        preparedStatement.setString(3, course.end_at);
-        preparedStatement.setInt(4, course.number_attending);
+
 
         preparedStatement.execute();
         preparedStatement.close();
@@ -34,14 +33,11 @@ public class CourseRepository {
         while (results.next()) {
             int id = results.getInt("id");
             String name = results.getString("name");
-            String start_at = results.getString("start_at");
-            String end_at = results.getString("end_at");
-            int number_attending = results.getInt("number_attending");
             String created_at = results.getString("created_at");
             String last_updated = results.getString("last_updated");
 
 
-            courses.add(new Course(id, name, start_at, end_at, number_attending, created_at, last_updated));
+            courses.add(new Course(id, name, created_at, last_updated));
         }
 
         statement.close();
@@ -62,9 +58,6 @@ public class CourseRepository {
         course = new Course(
                 results.getInt("id"),
                 results.getString("name"),
-                results.getString("start_at"),
-                results.getString("end_at"),
-                results.getInt("number_attending"),
                 results.getString("created_at"),
                 results.getString("last_updated")
 
@@ -73,5 +66,40 @@ public class CourseRepository {
         statement.close();
 
         return course;
+    }
+
+    public void addCourseEnrollment(CourseEnrollment courseEnrollment) throws SQLException{
+        Connection connection = dbHandler.getConnection();
+        String query = "INSERT INTO courseRegistration(studentId, courseId) VALUES(?,?)";
+        PreparedStatement preparedStatement = connection.prepareStatement(query);
+        preparedStatement.setInt(1, courseEnrollment.studentId);
+        preparedStatement.setInt(2, courseEnrollment.courseId);
+
+        preparedStatement.execute();
+        preparedStatement.close();
+    }
+
+    public ArrayList<Course> findCourseEnrollmentByStudentId(int studentId)  throws SQLException {
+        Statement statement = dbHandler.getConnection().createStatement();
+        String query = "select * from course "
+                + "inner join courseRegistration on course.id = courseRegistration.courseId "
+                + "where courseRegistration.studentId = "+ studentId;
+
+        ResultSet results = statement.executeQuery(query);
+
+        ArrayList<Course> courses = new ArrayList<Course>();
+
+        while (results.next()) {
+            int id = results.getInt("id");
+            String name = results.getString("name");
+            String created_at = results.getString("created_at");
+            String last_updated = results.getString("last_updated");
+
+            courses.add(new Course(id, name,  created_at, last_updated));
+        }
+
+        statement.close();
+
+        return courses;
     }
 }

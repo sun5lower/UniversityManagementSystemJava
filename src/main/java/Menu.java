@@ -1,6 +1,7 @@
 import controller.CourseController;
 import controller.ExamController;
 import entity.Course;
+import entity.CourseEnrollment;
 import entity.Exam;
 import entity.Student;
 import controller.StudentController;
@@ -15,25 +16,14 @@ public class Menu {
     ExamController examController = new ExamController();
 
     public void showHomeScreen() {
-        String PIN = "";
-        System.out.println("Please enter your PIN");
-        while (!PIN.equals("8888")) {
-            PIN = scanner.next().trim();
-            if (PIN.equals("8888")) {
-                break;
-            } else {
-                System.out.println("Incorrect, please try again.");
-            }
-        }
-        System.out.println("PIN is correct!");
 
         String choice = "";
         do {
-            System.out.println("Welcome to the University\n"
+            System.out.println("\nWelcome to the University\n"
                     + "\n1. Add Student \t\t\t\t\t\t\t\t6. Add Course"
                     + "\n2. View All Students \t\t \t\t\t\t7. View All Courses"
                     + "\n3. View Single Student info \t\t\t\t8. View Single Course info"
-                    + "\n4. Enroll student in to the course \t\t\t9. Exam"
+                    + "\n4. Enroll student in to the course \t\t\t9. Create Exam List"
                     + "\n5. View Exam List \t\t\t\t\t\t\t10. View Single Exam results"
                     + "\n11. Delete student\n"
                     + "\n12. Exit University"
@@ -82,8 +72,7 @@ public class Menu {
                 default:
                     break;
             }
-            System.out.print("\n Enter C to continue\n");
-            scanner.nextLine();
+
 
         } while (!choice.equals("12"));
 
@@ -91,7 +80,6 @@ public class Menu {
     }
 
     private void AddStudent() {
-        Student student = new Student();
         Scanner scanner = new Scanner(System.in);
         StudentController studentController = new StudentController();
 
@@ -123,26 +111,26 @@ public class Menu {
     private void viewSingleStudentsInfo() {
         System.out.println("Enter ID of student to find:");
         Student student = studentController.findStudentByID(scanner.nextInt());
-        System.out.println(student.name + " " + student.surname + " - " + "Year" + student.gradeYear + ". " + "Enrolled in " + student.courseEnrolled);
+        System.out.println(student.name + " " + student.surname + " - " + "Year " + student.gradeYear );
+        System.out.println("\n==== Registered Courses For Student =====\n");
+        ArrayList<Course> enrolledCourses = courseController.findCoursesEnrolledByStudent(student.id);
+        enrolledCourses.forEach(System.out::println);
     }
     private void enrollStudentToCourse() {
+        Scanner scanner = new Scanner(System.in);
+        CourseController courseController = new CourseController();
+        CourseEnrollment courseEnrollment = new CourseEnrollment();
+        System.out.println("Add new course enrollment");
 
-            do {
-                System.out.print("Enter your name ");
-                String name = scanner.nextLine();
+        System.out.println("Enter student Id:");
+        courseEnrollment.studentId = Integer.parseInt(scanner.nextLine());
 
-                System.out.print("Enter course you want to enroll( x to quit): ");
-                Scanner scanner = new Scanner(System.in);
-                String course = scanner.nextLine();
-                if (!course.equals("x")) {
-                    course = course + "\n " + course;
+        System.out.println("Enter course Id:");
+        courseEnrollment.courseId = Integer.parseInt(scanner.nextLine());
 
-                } else {
-                    break;
-                }
-            } while (1 != 0);
+        System.out.println(courseController.enrollStudent(courseEnrollment));
 
-        }
+    }
 
     private void addCourse() {
         Course course = new Course();
@@ -155,14 +143,7 @@ public class Menu {
         System.out.println("Enter name:");
         newCourse.name = scanner.nextLine();
 
-        System.out.println("Enter time when the course Starts:");
-        newCourse.start_at = scanner.nextLine();
 
-        System.out.println("Enter time when the course Ends:");
-        newCourse.start_at = scanner.nextLine();
-
-        System.out.println("Enter number of participants");
-        newCourse.number_attending = Integer.parseInt(scanner.nextLine());
 
         System.out.println(courseController.addCourse(newCourse));
 
@@ -172,11 +153,9 @@ public class Menu {
         courses = courseController.getAll();
 
         System.out.println("Course schedule:\n");
+        System.out.println("ID\t\t\t\t\t\t Course name");
         for (Course currentCourse : courses) {
-            System.out.println("ID " + currentCourse.id + " - " + currentCourse.name +
-                    " | " + currentCourse.start_at +
-                    " | " + currentCourse.end_at +
-                    " | " + currentCourse.number_attending);
+            System.out.println("ID " + currentCourse.id + " - " + currentCourse.name);
         }
     }
     private void viewSingleCourseInfo(){}
@@ -209,23 +188,21 @@ public class Menu {
         Exam exam = examController.findExamByCourseName(scanner.nextLine());
         System.out.println(exam.courseName + " " + exam.examDate + " - " +  exam.studentName + ". " + exam.result);
     }
-
     private void deleteStudent(){
-
         Scanner scanner = new Scanner(System.in);
         StudentController studentController = new StudentController();
 
         Student deleteStudent = new Student();
         System.out.println("Delete a Student");
 
-        System.out.println("Enter name:");
+        System.out.println("Enter student ID:");
         deleteStudent.id = Integer.parseInt(scanner.nextLine());
 
         System.out.println(studentController.delete(deleteStudent));
 
     }
 
-    }
+}
 
 
 

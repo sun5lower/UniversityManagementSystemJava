@@ -1,7 +1,8 @@
 package entity;
 
 public class Exam {
-
+    public int courseId;
+    public int studentId;
     public String courseName;
     public String examDate;
     public String studentName;
