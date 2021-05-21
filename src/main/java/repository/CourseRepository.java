@@ -86,7 +86,6 @@ public class CourseRepository {
                 + "where courseRegistration.studentId = "+ studentId;
 
         ResultSet results = statement.executeQuery(query);
-
         ArrayList<Course> courses = new ArrayList<Course>();
 
         while (results.next()) {

@@ -9,11 +9,11 @@ public class ExamRepository {
 
     public void createExamList(Exam exam) throws SQLException {
         Connection connection = dbHandler.getConnection();
-        String query = "INSERT INTO ExamList(courseName, examDate, studentName, result) VALUES(?,?,?,?)";
+        String query = "INSERT INTO ExamList(courseId, examDate, studentId, result) VALUES(?,?,?,?)";
         PreparedStatement preparedStatement = connection.prepareStatement(query);
-        preparedStatement.setString(1, exam.getCourseName());
+        preparedStatement.setInt(1, exam.getCourseId());
         preparedStatement.setString(2, exam.getExamDate());
-        preparedStatement.setString(3, exam.getStudentName());
+        preparedStatement.setInt(3, exam.getStudentId());
         preparedStatement.setInt(4, exam.getResult());
         preparedStatement.execute();
 

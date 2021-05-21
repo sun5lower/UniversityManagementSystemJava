@@ -3,6 +3,8 @@ import entity.Course;
 import entity.CourseEnrollment;
 import java.sql.SQLException;
 import java.util.ArrayList;
+
+import entity.Student;
 import repository.CourseRepository;
 public class CourseController {
 
@@ -63,4 +65,6 @@ public class CourseController {
 
         return courses;
     }
+
+
 }

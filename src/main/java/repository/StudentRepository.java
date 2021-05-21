@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
+import entity.Course;
 import entity.Student;
 
 public class StudentRepository {
@@ -87,6 +88,37 @@ public class StudentRepository {
 
         preparedStatement.close();
     }
+
+    public ArrayList<Student> findStudentEnrolledInCourse(int courseId)  throws SQLException {
+        Statement statement = dbHandler.getConnection().createStatement();
+        String query = "select * from student "
+                + "inner join courseRegistration on student.id = courseRegistration.studentId "
+                + "where courseRegistration.courseId = "+ courseId;
+
+
+        ResultSet results = statement.executeQuery(query);
+
+        ArrayList<Student> students = new ArrayList<Student>();
+
+        while (results.next()) {
+            int id = results.getInt("id");
+            String name = results.getString("name");
+            String surName = results.getString("surName");
+            int gradeYear = results.getInt("gradeYear");
+            String courseEnrolled = results.getString ("courseEnrolled");
+            String created_at = results.getString("created_at");
+            String last_updated = results.getString("last_updated");
+
+            students.add(new Student(id, name, surName, gradeYear,courseEnrolled, created_at, last_updated));
+        }
+
+        statement.close();
+
+        return students;
+    }
+
+
+
 }
 
 

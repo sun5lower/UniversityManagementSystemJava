@@ -1,4 +1,5 @@
 package controller;
+import entity.Course;
 import entity.Student;
 import repository.StudentRepository;
 import java.sql.SQLException;
@@ -53,5 +54,18 @@ public class StudentController {
         }
         return "Student with ID "+ student.id + " deleted successfully";
     }
+
+
+    public ArrayList<Student> findStudentEnrolledInCourse(int courseId) {
+        ArrayList<Student> students = new ArrayList<Student>();
+        try {
+            students = studentRepository.findStudentEnrolledInCourse(courseId);
+        }catch (SQLException e){
+            System.out.println(e);
+        }
+
+        return students;
+    }
+
 
 }

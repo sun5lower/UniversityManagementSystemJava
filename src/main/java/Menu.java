@@ -9,11 +9,14 @@ import java.sql.Time;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+
 public class Menu {
     Scanner scanner = new Scanner(System.in);
     StudentController studentController = new StudentController();
     CourseController courseController = new CourseController();
     ExamController examController = new ExamController();
+    CourseEnrollment courseEnrollment = new CourseEnrollment();
+
 
     public void showHomeScreen() {
 
@@ -25,8 +28,9 @@ public class Menu {
                     + "\n3. View Single Student info \t\t\t\t8. View Single Course info"
                     + "\n4. Enroll student in to the course \t\t\t9. Create Exam List"
                     + "\n5. View Exam List \t\t\t\t\t\t\t10. View Single Exam results"
+                    + "\n12. Find Exam By Course Name \t\t\t\t13. View All Student Exam results"
                     + "\n11. Delete student\n"
-                    + "\n12. Exit University"
+                    + "\n14. Exit University"
             );
 
             System.out.print("\nChoose the number for activity You would like to perform: ");
@@ -67,6 +71,12 @@ public class Menu {
                     deleteStudent();
                     break;
                 case "12":
+                    findExamByCourseName();
+                    break;
+                case "13":
+                    getAllStudentExam();
+                    break;
+                case "14":
                     System.out.println("Have a great day!");
                     return;
                 default:
@@ -74,15 +84,12 @@ public class Menu {
             }
 
 
-        } while (!choice.equals("12"));
+        } while (!choice.equals("14"));
 
         return;
     }
 
     private void AddStudent() {
-        Scanner scanner = new Scanner(System.in);
-        StudentController studentController = new StudentController();
-
         Student newStudent = new Student();
         System.out.println("Add a new Student");
 
@@ -98,28 +105,28 @@ public class Menu {
         System.out.println(studentController.addStudent(newStudent));
 
     }
+
     private void viewAllStudents() {
         ArrayList<Student> students = new ArrayList<>();
         students = studentController.getAll();
         System.out.println("All students in the University:\n");
-        System.out.println( "ID\t\t\t\t Student name and surname\n");
+        System.out.println("ID\t\t\t\t Student name and surname\n");
         for (Student currentStudent : students) {
 
-            System.out.println( currentStudent.id + "\t\t\t\t  " + currentStudent.name + " " + currentStudent.surname );
+            System.out.println(currentStudent.id + "\t\t\t\t  " + currentStudent.name + " " + currentStudent.surname);
         }
     }
+
     private void viewSingleStudentsInfo() {
         System.out.println("Enter ID of student to find:");
         Student student = studentController.findStudentByID(scanner.nextInt());
-        System.out.println(student.name + " " + student.surname + " - " + "Year " + student.gradeYear );
+        System.out.println(student.name + " " + student.surname + " - " + "Year " + student.gradeYear);
         System.out.println("\n==== Registered Courses For Student =====\n");
         ArrayList<Course> enrolledCourses = courseController.findCoursesEnrolledByStudent(student.id);
         enrolledCourses.forEach(System.out::println);
     }
+
     private void enrollStudentToCourse() {
-        Scanner scanner = new Scanner(System.in);
-        CourseController courseController = new CourseController();
-        CourseEnrollment courseEnrollment = new CourseEnrollment();
         System.out.println("Add new course enrollment");
 
         System.out.println("Enter student Id:");
@@ -133,9 +140,6 @@ public class Menu {
     }
 
     private void addCourse() {
-        Course course = new Course();
-        Scanner scanner = new Scanner(System.in);
-        CourseController courseController = new CourseController();
 
         Course newCourse = new Course();
         System.out.println("Add a new Course");
@@ -143,11 +147,10 @@ public class Menu {
         System.out.println("Enter name:");
         newCourse.name = scanner.nextLine();
 
-
-
         System.out.println(courseController.addCourse(newCourse));
 
     }
+
     private void viewAllCourses() {
         ArrayList<Course> courses = new ArrayList<>();
         courses = courseController.getAll();
@@ -158,39 +161,50 @@ public class Menu {
             System.out.println("ID " + currentCourse.id + " - " + currentCourse.name);
         }
     }
-    private void viewSingleCourseInfo(){}
+
+
+
+
+    private void viewSingleCourseInfo() {
+        System.out.println("Enter ID of course to find:");
+        Course course = courseController.findCourseByID(scanner.nextInt());
+        System.out.println(course.name);
+        System.out.println("\n==== Students enrolled into the Course =====\n");
+
+        ArrayList<Student> enrolledCourses = studentController.findStudentEnrolledInCourse(course.id);
+        enrolledCourses.forEach(System.out::println);
+        }
+
     private void createExamList() {
-        Exam exam = new Exam();
-        Scanner scanner = new Scanner(System.in);
-        ExamController examController = new ExamController();
 
         Exam newExam = new Exam();
-        System.out.println("Add a new Course");
+        System.out.println("Create Exam");
 
-        System.out.println("Enter course name:");
-        newExam.courseName = scanner.nextLine();
+        System.out.println("Enter course ID:");
+        newExam.courseId = Integer.parseInt(scanner.nextLine());
 
         System.out.println("Enter Exam Date:");
         newExam.examDate = scanner.nextLine();
 
-        System.out.println("Enter Student Name:");
-        newExam.studentName = scanner.nextLine();
+        System.out.println("Enter Student ID:");
+        newExam.studentId = Integer.parseInt(scanner.nextLine());
 
         System.out.println("Enter result");
         newExam.result = Integer.parseInt(scanner.nextLine());
 
         System.out.println(examController.createExamList(newExam));
-
     }
-    private void viewExamList(){}
+
+    private void viewExamList() {
+    }
+
     private void viewSingleExamResults() {
         System.out.println("Enter course name to find:");
         Exam exam = examController.findExamByCourseName(scanner.nextLine());
-        System.out.println(exam.courseName + " " + exam.examDate + " - " +  exam.studentName + ". " + exam.result);
+        System.out.println(exam.courseName + " " + exam.examDate + " - " + exam.studentName + ". " + exam.result);
     }
-    private void deleteStudent(){
-        Scanner scanner = new Scanner(System.in);
-        StudentController studentController = new StudentController();
+
+    private void deleteStudent() {
 
         Student deleteStudent = new Student();
         System.out.println("Delete a Student");
@@ -201,6 +215,8 @@ public class Menu {
         System.out.println(studentController.delete(deleteStudent));
 
     }
+    private void getAllStudentExam(){}
+    private void findExamByCourseName(){}
 
 }
 
