@@ -59,9 +59,24 @@ select student.name as studentName,  course.name as courseName, ExamList.result,
 from ExamList
 inner join course on course.id = ExamList.courseId
 inner join student on student.id = ExamList.studentId
-where  course.name LIKE '% + courseName + %'
+where  course.name LIKE '% + courseName + %';
 
 use University;
 select * from course
 inner join courseRegistration on studentId = courseRegistration.studentId
 where courseRegistration.courseId = 1;
+
+select student.name as studentName, course.name as courseName, ExamList.result, ExamList.examDate
+              from ExamList
+              inner join course on course.id = ExamList.courseId
+              inner join student on student.id = ExamList.studentId
+               where 1;
+
+               select * from ExamList;
+               select  student.name as studentName, course.name as courseName, ExamList.result, ExamList.examDate
+              from ExamList
+              inner join course on courseId = ExamList.courseId
+              inner join student on studentId = ExamList.studentId
+               where 1;
+
+                select * from ExamList;

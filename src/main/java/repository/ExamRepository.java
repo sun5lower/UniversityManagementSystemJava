@@ -24,8 +24,8 @@ public class ExamRepository {
         Statement statement = dbHandler.getConnection().createStatement();
         String query = "select student.name as studentName, course.name as courseName, ExamList.result, ExamList.examDate "
                 + "from ExamList "
-                + "inner join course on course.id = ExamList.courseId "
-                + "inner join student on student.id = ExamList.studentId "
+                + "inner join course on courseId = ExamList.courseId "
+                + "inner join student on studentId = ExamList.studentId "
                 + "where 1";
         ResultSet results = statement.executeQuery(query);
 
