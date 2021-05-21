@@ -155,14 +155,12 @@ public class Menu {
         ArrayList<Course> courses = new ArrayList<>();
         courses = courseController.getAll();
 
-        System.out.println("Course schedule:\n");
+        System.out.println("Course list:\n");
         System.out.println("ID\t\t\t\t\t\t Course name");
         for (Course currentCourse : courses) {
             System.out.println("ID " + currentCourse.id + " - " + currentCourse.name);
         }
     }
-
-
 
 
     private void viewSingleCourseInfo() {
@@ -196,6 +194,14 @@ public class Menu {
     }
 
     private void viewExamList() {
+        ArrayList<Exam> exams = new ArrayList<>();
+        exams = examController.getAll();
+
+        System.out.println("Exam list:\n");
+        System.out.println("ID\t\t\t\t\t\t Exam name\t\t\t\t\t\t  Exam date");
+        for (Exam currentExam : exams) {
+            System.out.println(currentExam.courseName + " - " + currentExam.examDate);
+        }
     }
 
     private void viewSingleExamResults() {
