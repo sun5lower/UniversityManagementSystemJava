@@ -60,3 +60,8 @@ from ExamList
 inner join course on course.id = ExamList.courseId
 inner join student on student.id = ExamList.studentId
 where  course.name LIKE '% + courseName + %'
+
+use University;
+select * from course
+inner join courseRegistration on studentId = courseRegistration.studentId
+where courseRegistration.courseId = 1;

@@ -122,11 +122,20 @@ public class Menu {
         System.out.println("Enter ID of student to find:");
         Student student = studentController.findStudentByID(scanner.nextInt());
         System.out.println(student.name + " " + student.surname + " - " + "Year " + student.gradeYear);
+
         System.out.println("\n==== Registered Courses For Student =====\n");
         ArrayList<Course> enrolledCourses = courseController.findCoursesEnrolledByStudent(student.id);
         enrolledCourses.forEach(System.out::println);
     }
+    private void viewSingleCourseInfo() {
+        System.out.println("Enter ID of course to find:");
+        Course course = courseController.findCourseByID(scanner.nextInt());
+        System.out.println(course.name);
 
+        System.out.println("\n==== Students enrolled into the Course =====\n");
+        ArrayList<Student> enrolledCourses = studentController.findStudentEnrolledInCourse(course.id);
+        enrolledCourses.forEach(System.out::println);
+    }
     private void enrollStudentToCourse() {
         System.out.println("Add new course enrollment");
 
@@ -164,15 +173,7 @@ public class Menu {
     }
 
 
-    private void viewSingleCourseInfo() {
-        System.out.println("Enter ID of course to find:");
-        Course course = courseController.findCourseByID(scanner.nextInt());
-        System.out.println(course.name);
-        System.out.println("\n==== Students enrolled into the Course =====\n");
 
-        ArrayList<Student> enrolledCourses = studentController.findStudentEnrolledInCourse(course.id);
-        enrolledCourses.forEach(System.out::println);
-        }
 
     private void createExamList() {
 
@@ -227,16 +228,6 @@ public class Menu {
 
     private void getStudentExams(){
 
-        ArrayList<Exam> enrolledCourses = examController.getStudentExams(courseEnrollment.studentId);
-        enrolledCourses.forEach(System.out::println);
-
-        enrolledCourses = examController.getStudentExams(courseEnrollment.studentId);
-
-        System.out.println("Exam list:\n");
-        System.out.println("Exam name\t\t\tExam date\t\t\t Result");
-        for (Exam currentExam : enrolledCourses) {
-            System.out.println(currentExam.courseName + " - " + currentExam.examDate+ " - " + currentExam.result);
-        }
 
 
     }
