@@ -30,10 +30,10 @@ public class ExamController {
         return exams;
     }
 
-    public ArrayList<Exam> getAllStudentExam(int studentId) {
+    public ArrayList<Exam> getStudentExams(int studentId) {
         ArrayList<Exam> exams = new ArrayList<Exam>();
         try {
-            exams = examRepository.getAllStudentExam(studentId);
+            exams = examRepository.getStudentExams(studentId);
         }catch (SQLException e){
             System.out.println(e);
         }

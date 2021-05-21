@@ -23,13 +23,14 @@ public class Menu {
         String choice = "";
         do {
             System.out.println("\nWelcome to the University\n"
-                    + "\n1. Add Student \t\t\t\t\t\t\t\t6. Add Course"
-                    + "\n2. View All Students \t\t \t\t\t\t7. View All Courses"
-                    + "\n3. View Single Student info \t\t\t\t8. View Single Course info"
-                    + "\n4. Enroll student in to the course \t\t\t9. Create Exam List"
-                    + "\n5. View Exam List \t\t\t\t\t\t\t10. View Single Exam results"
-                    + "\n12. Find Exam By Course Name \t\t\t\t13. View All Student Exam results"
-                    + "\n11. Delete student\n"
+                    + "\n1. Add Student \t\t\t\t\t\t\t\t7. Add Course\t\t\t\t\t\t11. Create Exam List"
+                    + "\n2. View All Students\t\t\t\t\t\t8. View All Courses\t\t\t\t\t12. View Exam List "
+                    + "\n3. View Single Student info \t\t\t\t9. View Single Course info\t\t\t13. View Single Exam results"
+                    + "\n4. Enroll student in to the course \t\t\t10. Find Exam By Course Name"
+                    + "\n5. View Student Exams"
+                    + "\n6. Delete student\n"
+
+
                     + "\n14. Exit University"
             );
 
@@ -49,32 +50,32 @@ public class Menu {
                 case "4":
                     enrollStudentToCourse();
                     break;
-                case "6":
+                case "7":
                     addCourse();
                     break;
-                case "7":
+                case "8":
                     viewAllCourses();
                     break;
-                case "5":
+                case "12":
                     viewExamList();
                     break;
-                case "8":
+                case "9":
                     viewSingleCourseInfo();
                     break;
-                case "9":
+                case "11":
                     createExamList();
                     break;
-                case "10":
+                case "13":
                     viewSingleExamResults();
                     break;
-                case "11":
+                case "6":
                     deleteStudent();
                     break;
-                case "12":
+                case "10":
                     findExamByCourseName();
                     break;
-                case "13":
-                    getAllStudentExam();
+                case "5":
+                    getStudentExams();
                     break;
                 case "14":
                     System.out.println("Have a great day!");
@@ -156,7 +157,7 @@ public class Menu {
         courses = courseController.getAll();
 
         System.out.println("Course list:\n");
-        System.out.println("ID\t\t\t\t\t\t Course name");
+        System.out.println("ID\t\tCourse name");
         for (Course currentCourse : courses) {
             System.out.println("ID " + currentCourse.id + " - " + currentCourse.name);
         }
@@ -221,8 +222,32 @@ public class Menu {
         System.out.println(studentController.delete(deleteStudent));
 
     }
-    private void getAllStudentExam(){}
-    private void findExamByCourseName(){}
+
+
+
+    private void getStudentExams(){
+
+        ArrayList<Exam> enrolledCourses = examController.getStudentExams(courseEnrollment.studentId);
+        enrolledCourses.forEach(System.out::println);
+
+        enrolledCourses = examController.getStudentExams(courseEnrollment.studentId);
+
+        System.out.println("Exam list:\n");
+        System.out.println("Exam name\t\t\tExam date\t\t\t Result");
+        for (Exam currentExam : enrolledCourses) {
+            System.out.println(currentExam.courseName + " - " + currentExam.examDate+ " - " + currentExam.result);
+        }
+
+
+    }
+
+
+    private void findExamByCourseName(){
+
+
+
+
+    }
 
 }
 

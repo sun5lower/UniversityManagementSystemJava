@@ -48,7 +48,7 @@ public class ExamRepository {
         return exams;
     }
 
-    public ArrayList<Exam> getAllStudentExam(int studentId) throws SQLException {
+    public ArrayList<Exam> getStudentExams(int studentId) throws SQLException {
         Statement statement = dbHandler.getConnection().createStatement();
         String query = "select student.name as studentName, course.name as courseName, ExamList.result, ExamList.examDate "
                 + "from ExamList "
